@@ -2,23 +2,23 @@ import AppointmentService from '@services/AppointmentServices'
 import { parseISO } from 'date-fns'
 import { Router } from 'express'
 
-const appointmentsRouter = Router()
+const AppointmentsRouter = Router()
 
-appointmentsRouter.get('/', async (request, response) => {
+AppointmentsRouter.get('/', async (request, response) => {
   const appointmentService = new AppointmentService()
   const appointments = await appointmentService.getAll()
 
   return response.json(appointments).status(200)
 })
 
-appointmentsRouter.post('/', async (request, response) => {
+AppointmentsRouter.post('/', async (request, response) => {
   try {
     const appointmentService = new AppointmentService()
-    const { provider, date } = request.body
+    const { provider_id, date } = request.body
 
     const parseDate = parseISO(date)
 
-    const appointment = await appointmentService.create({ date: parseDate, provider })
+    const appointment = await appointmentService.create({ date: parseDate, provider_id })
 
     return response.json(appointment).status(200)
   } catch (err) {
@@ -26,4 +26,4 @@ appointmentsRouter.post('/', async (request, response) => {
   }
 })
 
-export default appointmentsRouter
+export default AppointmentsRouter
