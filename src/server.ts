@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use(routes)
 
-const server = app.listen(3333, () => {
+const server = app.listen(process.env.PORT || 3333, () => {
   const { port, address } = server.address()
 
   console.log('Example app listening at http://%s:%s', address, port)
