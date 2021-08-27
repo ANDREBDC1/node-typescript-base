@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm'
 import { compare } from 'bcryptjs'
 import User from '@models/User'
 import { sign } from 'jsonwebtoken'
+import AppError from '../error/AppError'
 
 interface AuthData {
   email: string,
@@ -15,7 +16,7 @@ interface UserAuthData {
 }
 
 class AuthenticateUserService {
-  userRepository: UserRepository
+  private userRepository: UserRepository
   constructor () {
     this.userRepository = getCustomRepository(UserRepository)
   }
@@ -26,13 +27,13 @@ class AuthenticateUserService {
     })
 
     if (!user) {
-      throw new Error('Incorret email/password combination')
+      throw new AppError('Incorret email/password combination', 401)
     }
 
     const passwordMatched = await compare(password, user.password)
 
     if (!passwordMatched) {
-      throw new Error('Incorret email/password combination')
+      throw new AppError('Incorret email/password combination', 401)
     }
 
     const token = sign({ }, process.env.SECRET, {

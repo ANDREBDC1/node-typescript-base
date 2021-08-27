@@ -18,7 +18,8 @@
     ],
     "rules": {
         "no-unused-vars": "off",
-        "camelcase": "off"
+        "camelcase": "off",
+        "handle-callback-err": "off"
        
     }
    
