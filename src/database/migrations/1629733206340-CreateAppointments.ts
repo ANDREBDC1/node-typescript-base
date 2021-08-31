@@ -47,7 +47,7 @@ export class CreateAppointments1629733206340 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'appointments',
       new TableForeignKey({
-        name: 'provider_fk',
+        name: 'appointment_fk',
         columnNames: ['provider_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
@@ -57,7 +57,7 @@ export class CreateAppointments1629733206340 implements MigrationInterface {
   }
 
   public async down (queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropForeignKey('appointments', 'provider_fk')
+    queryRunner.dropForeignKey('appointments', 'appointment_fk')
     queryRunner.dropTable('appointments')
   }
 }

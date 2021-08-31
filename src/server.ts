@@ -5,6 +5,7 @@ import express,
   NextFunction
 } from 'express'
 import 'express-async-errors'
+import cors from 'cors'
 import './database'
 import 'reflect-metadata'
 import routes from './routes'
@@ -14,6 +15,7 @@ config()
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 app.use(routes)
@@ -28,7 +30,7 @@ app.use((err : Error, request : Request, response : Response, next : NextFunctio
 
   return response.status(500).json({
     status: 'error',
-    message: 'Internal server error'
+    message: 'Internal server error :' + err
   })
 })
 

@@ -7,7 +7,7 @@ import AppError from '../error/AppError'
 
 interface AuthData {
   email: string,
-  password: string,
+  password: string
 }
 
 interface UserAuthData {
@@ -24,8 +24,11 @@ class AuthenticateUserService {
   public async auth ({ email, password } : AuthData) : Promise<UserAuthData> {
     const user = await this.userRepository.findOne({
       where: { email }
+      // relations: ['permissions']
+
     })
 
+    console.log(user)
     if (!user) {
       throw new AppError('Incorret email/password combination', 401)
     }
@@ -36,6 +39,7 @@ class AuthenticateUserService {
       throw new AppError('Incorret email/password combination', 401)
     }
 
+    // const roulesIds = user.permissions.map(p => p.id)
     const token = sign({ }, process.env.SECRET, {
       subject: user.id,
       expiresIn: '1d'

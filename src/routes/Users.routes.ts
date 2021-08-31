@@ -4,26 +4,25 @@ import UserServices from '@services/UserServices'
 const UsersRouter = Router()
 
 UsersRouter.post('/', async (request, response) => {
-  try {
-    const userServices = new UserServices()
-    const {
-      name,
-      email,
-      password
-    } = request.body
+  const userServices = new UserServices()
+  const {
+    name,
+    email,
+    password,
+    roles
 
-    const user = await userServices.Create({
-      name,
-      email,
-      password
-    })
+  } = request.body
 
-    delete user.password
+  const user = await userServices.Create({
+    name,
+    email,
+    password,
+    roles
+  })
 
-    return response.json(user).status(200)
-  } catch (err) {
-    return response.status(err.statusCode).json({ error: err.message })
-  }
+  delete user.password
+
+  return response.json(user).status(200)
 })
 
 export default UsersRouter
