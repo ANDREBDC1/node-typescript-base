@@ -28,7 +28,6 @@ class AuthenticateUserService {
 
     })
 
-    console.log(user)
     if (!user) {
       throw new AppError('Incorret email/password combination', 401)
     }
@@ -51,6 +50,20 @@ class AuthenticateUserService {
     }
 
     return data
+  }
+
+  public async refreshToken (user_id: string) : Promise<string> {
+    const user = await this.userRepository.findOne({ where: { id: user_id } })
+
+    if (!user) {
+      throw new AppError('token invalid')
+    }
+    const newToken = sign({ }, process.env.SECRET, {
+      subject: user.id,
+      expiresIn: '1d'
+    })
+
+    return newToken
   }
 }
 

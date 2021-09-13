@@ -10,6 +10,8 @@ import './database'
 import 'reflect-metadata'
 import routes from './routes'
 import AppError from './error/AppError'
+import { diretory } from './middlewares/upload'
+import './shared/contener'
 import { config } from 'dotenv'
 config()
 
@@ -17,6 +19,8 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use('/files', express.static(diretory))
+app.use(express.urlencoded({ extended: true }))
 
 app.use(routes)
 
@@ -30,7 +34,7 @@ app.use((err : Error, request : Request, response : Response, next : NextFunctio
 
   return response.status(500).json({
     status: 'error',
-    message: 'Internal server error :' + err
+    message: `Internal server error: [${err.message}]`
   })
 })
 

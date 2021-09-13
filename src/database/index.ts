@@ -1,5 +1,6 @@
-import { createConnection } from 'typeorm'
+import { createConnection, Connection } from 'typeorm'
 
-createConnection().then(() => {
-  console.log('connected data base')
+createConnection().then((connetion : Connection) => {
+  connetion.runMigrations({ transaction: 'all' })
+  console.log('connected data bese')
 }).catch(erro => console.log(erro))

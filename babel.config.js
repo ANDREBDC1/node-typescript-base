@@ -17,7 +17,8 @@ module.exports = {
         '@models': './src/models',
         '@controllers': './src/controllers',
         '@views': './src/views',
-        '@services': './services'
+        '@services': './services',
+        '@providers' : './src/providers'
       }
     }]
   ],

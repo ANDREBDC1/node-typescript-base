@@ -7,6 +7,7 @@ import {
 
 import { verify } from 'jsonwebtoken'
 import AppError from '../error/AppError'
+import { container } from 'tsyringe'
 
 interface TokenPayload{
   ait: number,
@@ -32,14 +33,15 @@ const verifyAuth = (roles : string []) => {
       throw new AppError('JWT token is missing', 401)
     }
 
+    const userServices = container.resolve(UserServices)
+
     try {
-      const userServices = new UserServices()
       const decode = verify(token, process.env.SECRET)
 
       const { sub } = decode as TokenPayload
 
       if (roles) {
-        const user = await userServices.GetById(sub)
+        const user = await userServices.getById(sub)
 
         const roulesUser = user.permissions.map(permission => permission.descript)
 
