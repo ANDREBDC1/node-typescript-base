@@ -7,7 +7,7 @@ interface IMailContact{
 
 export default interface ISendMailDto{
 
-  from?: IMailContact,
+  from?: IMailContact | null,
 
   to: IMailContact
 
