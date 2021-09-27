@@ -1,17 +1,18 @@
+import 'reflect-metadata'
 import express,
 {
   Request,
   Response,
   NextFunction
 } from 'express'
+
 import 'express-async-errors'
 import cors from 'cors'
 import './database'
-import 'reflect-metadata'
+import './shared/contener'
 import routes from './routes'
 import AppError from './error/AppError'
 import { diretory } from './middlewares/upload'
-import './shared/contener'
 import { config } from 'dotenv'
 config()
 

@@ -1,4 +1,4 @@
-import UserRepository from 'src/repositories/UserRepository'
+import UserRepository from '../repositories/UserRepository'
 import { getCustomRepository } from 'typeorm'
 import { compare } from 'bcryptjs'
 import User from '@models/User'

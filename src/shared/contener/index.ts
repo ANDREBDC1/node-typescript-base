@@ -4,7 +4,7 @@ import IMailTemplateProvider from '@providers/emailProvider/templates/IMailTempl
 import HabdlebrsMailTemplate from '@providers/emailProvider/templates/HabdlebrsMailTemplate'
 
 import IMailProvider from '@providers/emailProvider/IMailProvider'
-import SmtpMailProvader from '@providers/emailProvider/SmtpMailProvader'
+import SmtpMailProvider from '@providers/emailProvider/SmtpMailProvider'
 import IUploadPrivider from '@providers/uploadProvider/IUploadProvider'
 import S3StorageProvider from '@providers/uploadProvider/S3StorageProvider'
 
@@ -16,9 +16,9 @@ container.registerSingleton<IMailTemplateProvider>(
 )
 
 // injeção envio de email
-container.registerInstance<IMailProvider>(
+container.registerSingleton<IMailProvider>(
   'MailProvider',
-  container.resolve(SmtpMailProvader)
+  SmtpMailProvider
 )
 
 container.registerSingleton<IUploadPrivider>(

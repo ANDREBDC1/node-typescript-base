@@ -10,7 +10,7 @@ class Permission {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
+  @Column('varchar')
   descript: string
 }
 

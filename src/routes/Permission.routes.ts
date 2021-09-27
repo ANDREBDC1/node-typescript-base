@@ -1,6 +1,6 @@
 import Permission from '@models/Permission'
 import { Router } from 'express'
-import { verifyAuth } from 'src/middlewares/auth'
+import { verifyAuth } from '../middlewares/auth'
 import { getRepository } from 'typeorm'
 const PermissionRouter = Router()
 

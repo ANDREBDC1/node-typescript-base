@@ -6,7 +6,7 @@ import nodemailer, { Transporter } from 'nodemailer'
 import IMailTemplateProvider from './templates/IMailTemplateProvider'
 
 @injectable()
-class SmtpMailProvader implements IMailProvider {
+class SmtpMailProvider implements IMailProvider {
   private cliente : Transporter
   constructor (
     @inject('MailTemplatePrivider')
@@ -47,4 +47,4 @@ class SmtpMailProvader implements IMailProvider {
   }
 }
 
-export default SmtpMailProvader
+export default SmtpMailProvider
