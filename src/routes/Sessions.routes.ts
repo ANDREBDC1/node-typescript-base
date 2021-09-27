@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import AuthenticateUserService from '@services/AuthenticateUserService'
-import { verifyAuth } from 'src/middlewares/auth'
+import { verifyAuth } from '../middlewares/auth'
 
 const SessionsRouter = Router()
 

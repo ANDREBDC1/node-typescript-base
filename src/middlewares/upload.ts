@@ -1,7 +1,7 @@
 import multer from 'multer'
 import path from 'path'
 import crypto from 'crypto'
-import AppError from 'src/error/AppError'
+import AppError from '../error/AppError'
 
 const diretory = path.resolve(__dirname, '..', '..', 'tmp', 'upload')
 const diretoryTmp = path.resolve(__dirname, '..', '..', 'tmp')

@@ -17,10 +17,13 @@ module.exports = {
         '@models': './src/models',
         '@controllers': './src/controllers',
         '@views': './src/views',
-        '@services': './services',
+        '@services': './src/services',
         '@providers' : './src/providers'
       }
-    }]
+    }],
+    "babel-plugin-transform-typescript-metadata",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ],
   ignore: [
     '**/*.spec.ts'

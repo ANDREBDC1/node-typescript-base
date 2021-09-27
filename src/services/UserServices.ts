@@ -109,7 +109,7 @@ class UserServices {
       const dataExpired = new Date()
       dataExpired.setHours(dataExpired.getHours() + 2)
 
-      const urlResetPassword = `${process.env.URL_FRONT}/reset?token=${token}`
+      const urlResetPassword = `${process.env.URL_FRONT}/reset-password?token=${token}`
       const send = await this.mailProvider.sendEmail({
         to: {
           name: user.name,

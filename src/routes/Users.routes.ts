@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import UserServices from '@services/UserServices'
-import { verifyAuth } from 'src/middlewares/auth'
+import { verifyAuth } from '../middlewares/auth'
 import { upload } from '../middlewares/upload'
 import { container } from 'tsyringe'
 
